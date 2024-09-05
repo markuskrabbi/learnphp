@@ -1,14 +1,31 @@
 <?php
 
-$array = [1,2,3,4];
-array_push($array,5,6,7);
-$array[] = 8;
-$array[4] = 123123;
-var_dump($array);
+class Box {
+    public $height;
+    public $width;
+    public $length;
 
-function hello($name=''){
-    echo "hello $name\n";
+    public function volume(){
+        return $this->height * $this->width * $this->length;
+    } 
 }
 
-hello('markus');
-hello();
+class Metalbox extends Box {
+    public $weightPerUnit = 10;
+    public function weight(){
+        return $this->volume() * $this->weightPerUnit;
+    }
+}
+
+$num1 = 1;
+$num2 = $num1;
+$num2 = 2;
+var_dump($num1, $num2);
+
+
+
+$metal1 = new MetalBox();
+$metal1->height = 1;
+$metal2 = clone $metal1;
+$metal2->height = 2;
+var_dump($metal1, $metal2);
